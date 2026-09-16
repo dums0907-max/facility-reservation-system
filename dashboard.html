@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facility Reservation System</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Facility Reservation &amp; Approval System</h1>
+    <div>
+      <span class="who">Signed in as <span id="who-name">…</span><span id="who-role" class="role-badge"></span></span>
+      <button id="logout-btn">Sign out</button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <main class="content">
+
+    <!-- FACILITIES (all roles) -->
+    <section id="panel-facilities" class="panel">
+      <h2>Facilities</h2>
+      <div id="admin-add-facility" class="card hidden">
+        <strong>Add facility</strong>
+        <form id="add-facility-form" class="grid-2" style="margin-top:10px;">
+          <div class="field"><label>Name</label><input id="fac_name" required></div>
+          <div class="field"><label>Location</label><input id="fac_location"></div>
+          <div class="field"><label>Capacity</label><input id="fac_capacity" type="number" min="1"></div>
+          <div class="field"><label>Status</label>
+            <select id="fac_status"><option>Active</option><option>Maintenance</option><option>Inactive</option></select>
+          </div>
+        </form>
+        <button class="primary-btn" id="add-facility-btn" style="max-width:200px;">Add facility</button>
+        <p id="fac-error" class="error hidden"></p>
+      </div>
+      <div class="card">
+        <table id="facilities-table">
+          <thead><tr><th>Name</th><th>Location</th><th>Capacity</th><th>Status</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SUBMIT RESERVATION (requester) -->
+    <section id="panel-reserve" class="panel">
+      <h2>Submit a reservation</h2>
+      <div class="card">
+        <form id="reserve-form">
+          <div class="field">
+            <label>Facility</label>
+            <select id="res_facility" required></select>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label>Start</label><input type="datetime-local" id="res_start" required></div>
+            <div class="field"><label>End</label><input type="datetime-local" id="res_end" required></div>
+          </div>
+          <div class="field"><label>Purpose</label><textarea id="res_purpose" rows="2" placeholder="What is this reservation for?"></textarea></div>
+          <button class="primary-btn" type="submit" style="max-width:220px;">Submit request</button>
+          <p id="reserve-error" class="error hidden"></p>
+          <p id="reserve-info" class="info hidden"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- MY RESERVATIONS (requester) -->
+    <section id="panel-my-reservations" class="panel">
+      <h2>My reservations</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Facility</th><th>When</th><th>Purpose</th><th>Status</th><th></th></tr></thead>
+          <tbody id="my-reservations-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ALL RESERVATIONS (admin / staff) -->
+    <section id="panel-all-reservations" class="panel">
+      <h2>Reservations</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Facility</th><th>Requester</th><th>When</th><th>Status</th><th></th></tr></thead>
+          <tbody id="all-reservations-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SERVICE REQUESTS (staff, viewable by admin) -->
+    <section id="panel-service" class="panel">
+      <h2>Service requests</h2>
+      <div id="staff-add-service" class="card hidden">
+        <strong>Log a service request</strong>
+        <form id="service-form" style="margin-top:10px;">
+          <div class="field"><label>Facility</label><select id="svc_facility"></select></div>
+          <div class="field"><label>Description</label><textarea id="svc_description" rows="2" required></textarea></div>
+          <button class="primary-btn" type="submit" style="max-width:200px;">Log request</button>
+        </form>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Facility</th><th>Description</th><th>Status</th><th>Logged</th></tr></thead>
+          <tbody id="service-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MANAGE USERS (admin) -->
+    <section id="panel-users" class="panel">
+      <h2>Manage users</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Name</th><th>Role</th><th>Joined</th><th></th></tr></thead>
+          <tbody id="users-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- AUDIT LOG (admin) -->
+    <section id="panel-audit" class="panel">
+      <h2>Audit log</h2>
+      <p class="muted">Every submission, approval, rejection, cancellation, and status/facility change is recorded here.</p>
+      <div class="card">
+        <table>
+          <thead><tr><th>When</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th></tr></thead>
+          <tbody id="audit-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
