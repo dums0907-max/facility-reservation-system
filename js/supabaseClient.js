@@ -1,7 +1,7 @@
 // ---------------------------------------------------------
 // Fill these in from Supabase → Project Settings → API
 // ---------------------------------------------------------
-const SUPABASE_URL = "https://tulupxerognqtpihcsfn.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1bHVweGVyb2ducXRwaWhjc2ZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1MTU5NjQsImV4cCI6MjEwNTA5MTk2NH0.KWsW7PGkVFqZ06yhsoYbLxZMz2h5p1_yES-_kgJHO7Y";
+const SUPABASE_URL = "https://cztezldterjvvzengyys.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6dGV6bGR0ZXJqdnZ6ZW5neXlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5MDMwMzQsImV4cCI6MjEwNDQ3OTAzNH0.1i79MBlEHyP8KY-98jEdAx69JPpjAsi7Mdki_p4Pd9Q";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
